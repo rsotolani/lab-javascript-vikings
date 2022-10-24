@@ -92,8 +92,11 @@ class War {
                     t * this.vikingArmy.length,
                     Math.floor(t * this.vikingArmy.length));
         */
-        
 
+
+        
+        if (!this.vikingArmy.length || !this.saxonArmy.length) return null;
+        
         let vikingRandom = Math.floor(this.vikingArmy.length * Math.random());
         let viking = this.vikingArmy[vikingRandom];
 
@@ -108,6 +111,8 @@ class War {
     }
 
     saxonAttack() {
+        
+        if (!this.vikingArmy.length || !this.saxonArmy.length) return null;
 
         let vikingRandom = Math.floor(this.vikingArmy.length * Math.random());
         let viking = this.vikingArmy[vikingRandom];
@@ -119,11 +124,17 @@ class War {
 
         if (viking.health <= 0) this.vikingArmy.splice(vikingRandom, 1);
 
+
         return attack;
 
     }
 
     showStatus() {
+        if (this.saxonArmy.length === 0) return "Vikings have won the war of the century!";
+
+        if (this.vikingArmy.length === 0) return "Saxons have fought for their lives and survived another day...";
+
+        if (this.vikingArmy.length > 0 && this.saxonArmy.length > 0) return "Vikings and Saxons are still in the thick of battle.";        
 
     }
 
@@ -132,21 +143,30 @@ class War {
 const war = new War();
 
 war.addViking(new Viking("R",100,50));
-//war.addViking(new Viking("S",100,50));
+war.addViking(new Viking("S",100,50));
 //war.addViking(new Viking("T",100,50));
 //war.addViking(new Viking("U",100,50));
 //war.addViking(new Viking("V",100,50));
 //console.log(war.vikingArmy);
 
-war.addSaxon(new Saxon(50,10));
-war.addSaxon(new Saxon(50,10));
-//war.addSaxon(new Saxon(50,10));
-//war.addSaxon(new Saxon(50,10));
-//war.addSaxon(new Saxon(50,10));
+war.addSaxon(new Saxon(50,100));
+war.addSaxon(new Saxon(50,100));
+//war.addSaxon(new Saxon(50,100));
+//war.addSaxon(new Saxon(50,100));
+//war.addSaxon(new Saxon(50,100));
 //console.log(war.saxonArmy);
 
-console.log(war.vikingAttack());
-console.log(war.saxonAttack());
+console.log(1, war.vikingAttack());
+console.log(war.showStatus());
+console.log(2, war.saxonAttack());
+console.log(war.showStatus());
+console.log(3, war.vikingAttack());
+console.log(war.showStatus());
+console.log(4, war.saxonAttack());
+console.log(war.showStatus());
+
+
+
 
 
 
